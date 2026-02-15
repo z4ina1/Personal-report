@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisis Karakter Pribadi - Zainal Anwar Nugroho</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #333;
+            --accent: #c9a227;
+            --bg: #fafafa;
+            --card: #ffffff;
+            --border: #e0e0e0;
+            --text: #2c2c2c;
+            --text-light: #666;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 40px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .header .subtitle {
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: var(--text-light);
+            text-transform: uppercase;
+        }
+
+        .profile-info {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .profile-info h2 {
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+
+        .profile-info .meta {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .section {
+            background: var(--card);
+            border: 1px solid var(--border);
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: var(--primary);
+            color: white;
+            padding: 20px 30px;
+        }
+
+        .section-header h3 {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .section-content {
+            padding: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            font-weight: 500;
+            color: var(--text-light);
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .element-bar {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+        }
+
+        .element-label {
+            width: 80px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .element-track {
+            flex: 1;
+            height: 8px;
+            background: #eee;
+            margin: 0 12px;
+        }
+
+        .element-fill {
+            height: 100%;
+            background: var(--primary);
+        }
+
+        .element-count {
+            width: 30px;
+            text-align: right;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .element-strong .element-fill {
+            background: var(--accent);
+        }
+
+        .element-weak .element-fill {
+            background: #ddd;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            border: 1px solid var(--border);
+            padding: 24px;
+        }
+
+        .card h4 {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            margin-bottom: 12px;
+        }
+
+        .card .value {
+            font-size: 24px;
+            font-weight: 300;
+            color: var(--primary);
+        }
+
+        .card .description {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-top: 8px;
+        }
+
+        .item-list {
+            list-style: none;
+        }
+
+        .item-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .item-list li:last-child {
+            border-bottom: none;
+        }
+
+        .item-list .marker {
+            width: 20px;
+            color: var(--accent);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .item-list .content {
+            flex: 1;
+        }
+
+        .item-list .content strong {
+            display: block;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+
+        .item-list .content span {
+            color: var(--text-light);
+            font-size: 13px;
+        }
+
+        .compatibility-header {
+            text-align: center;
+            padding: 30px;
+            background: #f5f5f5;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .compatibility-score {
+            font-size: 48px;
+            font-weight: 300;
+            color: var(--accent);
+        }
+
+        .compatibility-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-light);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 24px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            background: var(--card);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+        }
+
+        .timeline-date {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .timeline-title {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .timeline-desc {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-light);
+            font-size: 12px;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .section {
+                break-inside: avoid;
+            }
+            .container {
+                max-width: 100%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Analisis Karakter</h1>
+            <p class="subtitle">Laporan Bacaan Pribadi Komprehensif</p>
+            
+            <div class="profile-info">
+                <h2>Zainal Anwar Nugroho</h2>
+                <p class="meta">
+                    27 September 1995, 16:37 WIB | Jakarta, Indonesia<br>
+                    Laki-laki | Usia 30 (2025)
+                </p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h3>BaZi (Empat Pilar Takdir)</h3>
+            </div>
+            <div class="section-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pilar</th>
+                            <th>Stem</th>
+                            <th>Branch</th>
+                            <th>Elemen</th>
+                            <th>Na Yin</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Tahun</td>
+                            <td>Yi (乙)</td>
+                            <td>Hai (亥) - Babi</td>
+                            <td>Kayu</td>
+                            <td>Api Gunung</td>
+                        </tr>
+                        <tr>
+                            <td>Bulan</td>
+                            <td>Yi (乙)</td>
+                            <td>You (酉) - Ayam</td>
+                            <td>Kayu</td>
+                            <td>Air Mata</td>
+                        </tr>
+                        <tr>
+                            <td>Hari (Day Master)</td>
+                            <td>Xin (辛)</td>
+                            <td>You (酉) - Ayam</td>
+                            <td>Logam (Yin)</td>
+                            <td>Logam Pedang</td>
+                        </tr>
+                        <tr>
+                            <td>Jam</td>
+                            <td>Bing (丙)</td>
+                            <td>Shen (申) - Monyet</td>
+                            <td>Api</td>
+                            <td>Api Gunung</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 style="margin: 30px 0 15px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Distribusi Lima Elemen</h4>
+                
+                <div class="element-bar element-strong">
+                    <span class="element-label">Logam</span>
+                    <div class="element-track">
+                        <div class="element-fill" style="width: 50%;"></div>
+                    </div>
+                    <span class="element-count">4</span>
+                </div>
+                <div class="element-bar">
+                    <span class="element-label">Kayu</span>
+                    <div class="element-track">
+                        <div class="element-fill" style="width: 25%;"></div>
+                    </div>
+                    <span class="element-count">2</span>
+                </div>
+                <div class="element-bar">
+                    <span class="element-label">Api</span>
+                    <div class="element-track">
+                        <div class="element-fill" style="width: 12.5%;"></div>
+                    </div>
+                    <span class="element-count">1</span>
+                </div>
+                <div class="element-bar">
+                    <span class="element-label">Air</span>
+                    <div class="element-track">
+                        <div class="element-fill" style="width: 12.5%;"></div>
+                    </div>
+                    <span class="element-count">1</span>
+                </div>
+                <div class="element-bar element-weak">
+                    <span class="element-label">Tanah</span>
+                    <div class="element-track">
+                        <div class="element-fill" style="width: 0%;"></div>
+                    </div>
+                    <span class="element-count">0</span>
+                </div>
+
+                <div style="margin-top: 30px; padding: 20px; background: #f9f9f9; border-left: 3px solid var(--accent);">
+                    <strong>Analisis Day Master:</strong> Xin (辛) Logam Yin mewakili perhiasan halus, instrumen presisi, dan logam yang dimurnikan. Ini menunjukkan kepribadian yang detail-oriented, logis, disiplin, dan menghargai kesempurnaan. Elemen Logam yang kuat (50% dari chart) menciptakan kemampuan kepemimpinan alami namun membutuhkan kesadaran akan fleksibilitas.
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h3>Numerologi</h3>
+            </div>
+            <div class="section-content">
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>Jalan Hidup (Life Path)</h4>
+                        <div class="value">6</div>
+                        <div class="description">Sang Pengasuh - Bertanggung jawab, peduli, domestik. Berhasil dalam lingkungan harmonis sebagai pengasuh dan pembangun komunitas.</div>
+                    </div>
+                    <div class="card">
+                        <h4>Angka Takdir (Destiny)</h4>
+                        <div class="value">11</div>
+                        <div class="description">Angka Master - Kepemimpinan spiritual dan inspirasi. Visioner dengan intuisi tinggi dan kehadiran yang menginspirasi.</div>
+                    </div>
+                    <div class="card">
+                        <h4>Hasrat Jiwa (Soul Urge)</h4>
+                        <div class="value">1</div>
+                        <div class="description">Menginginkan kemerdekaan dan menjadi nomor satu di bidang yang dipilih. Ambisius dan mandiri.</div>
+                    </div>
+                    <div class="card">
+                        <h4>Angka Kepribadian</h4>
+                        <div class="value">1</div>
+                        <div class="description">Orang lain memandang sebagai pribadi percaya diri, mampu, dan pemimpin alami. Kehadiran yang kuat dan berwenang.</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px; padding: 24px; background: #f9f9f9; text-align: center;">
+                    <h4 style="margin-bottom: 12px;">Arkana Matriks Takdir</h4>
+                    <div style="font-size: 20px; font-weight: 300; margin-bottom: 8px;">Matahari (The Sun)</div>
+                    <p style="color: var(--text-light); font-size: 14px;">Positivitas, kesenangan, kesuksesan, vitalitas. Energi yang bercahaya membawa cahaya bagi orang lain.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h3>Desain Manusia (Human Design)</h3>
+            </div>
+            <div class="section-content">
+                <div class="grid-3">
+                    <div class="card">
+                        <h4>Tipe</h4>
+                        <div class="value" style="font-size: 18px;">Manifesting Generator</div>
+                        <div class="description">Menggabungkan energi sustainable Generator dengan kekuatan inisiasi Manifestor. Eksekusi cepat dan multi-talenta.</div>
+                    </div>
+                    <div class="card">
+                        <h4>Profil</h4>
+                        <div class="value" style="font-size: 18px;">6/3</div>
+                        <div class="description">Role Model / Martir. Belajar dari pengalaman (0-30), menjadi contoh bagi orang lain (30-50).</div>
+                    </div>
+                    <div class="card">
+                        <h4>Otoritas</h4>
+                        <div class="value" style="font-size: 18px;">Splenic</div>
+                        <div class="description">Intuisi spontan di saat itu. Insting survival kuno untuk mengetahui secara instan.</div>
+                    </div>
+                </div>
+
+                <h4 style="margin: 30px 0 15px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Center yang Terdefinisi</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Center</th>
+                            <th>Status</th>
+                            <th>Tema</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Tenggorokan</td>
+                            <td>Terdefinisi</td>
+                            <td>Komunikasi dan manifestasi yang konsisten</td>
+                        </tr>
+                        <tr>
+                            <td>Sakral</td>
+                            <td>Terdefinisi</td>
+                            <td>Tenaga kerja sustainable dan energi kehidupan</td>
+                        </tr>
+                        <tr>
+                            <td>Limpa (Spleen)</td>
+                            <td>Terdefinisi</td>
+                            <td>Intuisi dan insting survival yang konsisten</td>
+                        </tr>
+                        <tr>
+                            <td>Solar Plexus</td>
+                            <td>Terdefinisi</td>
+                            <td>Gelombang emosional dan perasaan</td>
+                        </tr>
+                        <tr>
+                            <td>Akar (Root)</td>
+                            <td>Terdefinisi</td>
+                            <td>Dorongan dan tekanan stres</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 style="margin: 20px 0 15px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Center yang Belum Terdefinisi</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Center</th>
+                            <th>Status</th>
+                            <th>Kecerdasan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Kepala</td>
+                            <td>Belum Terdefinisi</td>
+                            <td>Kecerdasan melalui keterbukaan pada inspirasi</td>
+                        </tr>
+                        <tr>
+                            <td>Ajna</td>
+                            <td>Belum Terdefinisi</td>
+                            <td>Kecerdasan melalui keterbukaan pada konsep</td>
+                        </tr>
+                        <tr>
+                            <td>Center G</td>
+                            <td>Belum Terdefinisi</td>
+                            <td>Kecerdasan melalui keterbukaan pada identitas</td>
+                        </tr>
+                        <tr>
+                            <td>Jantung</td>
+                            <td>Belum Terdefinisi</td>
+                            <td>Kecerdasan melalui keterbukaan pada kehendak</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div style="margin-top: 30px; padding: 20px; background: #f9f9f9; border-left: 3px solid var(--accent);">
+                    <strong>Strategi:</strong> Merespons (dan kemudian Memvisualisasikan sebagai Manifesting Generator)<br>
+                    <strong>Tanda Tangan:</strong> Kepuasan + Kedamaian<br>
+                    <strong>Bukan-Diri:</strong> Frustrasi + Kemarahan<br>
+                    <strong>Definisi:</strong> Split (dua area terpisah)
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h3>Zi Wei Dou Shu (Astrologi Ungu)</h3>
+            </div>
+            <div class="section-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Istana (Palace)</th>
+                            <th>Bintang Utama</th>
+                            <th>Sifat</th>
+                            <th>Elemen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Kehidupan (命)</td>
+                            <td>Zi Wei (紫微)</td>
+                            <td>Kaisar</td>
+                            <td>Tanah</td>
+                        </tr>
+                        <tr>
+                            <td>Saudara</td>
+                            <td>Tian Ji (天機)</td>
+                            <td>Penasihat</td>
+                            <td>Kayu</td>
+                        </tr>
+                        <tr>
+                            <td>Pasangan</td>
+                            <td>Tai Yang (太陽)</td>
+                            <td>Matahari</td>
+                            <td>Api</td>
+                        </tr>
+                        <tr>
+                            <td>Anak</td>
+                            <td>Wu Qu (武曲)</td>
+                            <td>Prajurit</td>
+                            <td>Logam</td>
+                        </tr>
+                        <tr>
+                            <td>Kekayaan</td>
+                            <td>Tian Tong (天同)</td>
+                            <td>Keberuntungan</td>
+                            <td>Air</td>
+                        </tr>
+                        <tr>
+                            <td>Kesehatan</td>
+                            <td>Lian Zhen (廉貞)</td>
+                            <td>Kesucian</td>
+                            <td>Api</td>
+                        </tr>
+                        <tr>
+                            <td>Perjalanan</td>
+                            <td>Tian Fu (天府)</td>
+                            <td>Permaisuri</td>
+                            <td>Tanah</td>
+                        </tr>
+                        <tr>
+                            <td>Teman</td>
+                            <td>Tai Yin (太陰)</td>
+                            <td>Bulan</td>
+                            <td>Air</td>
+                        </tr>
+                        <tr>
+                            <td>Karier</td>
+                            <td>Tan Lang (貪狼)</td>
+                            <td>Hasrat</td>
+                            <td>Kayu</td>
+                        </tr>
+                        <tr>
+                            <td>Properti</td>
+                            <td>Ju Men (巨門)</td>
+                            <td>Gerbang Besar</td>
+                            <td>Air</td>
+                        </tr>
+                        <tr>
+                            <td>Mental</td>
+                            <td>Tian Xiang (天相)</td>
+                            <td>Menteri</td>
+                            <td>Air</td>
+                        </tr>
+                        <tr>
+                            <td>Orang Tua</td>
+                            <td>Tian Liang (天梁)</td>
+                            <td>Jembatan</td>
+                            <td>Tanah</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div style="margin-top: 30px; padding: 20px; background: #f9f9f9; border-left: 3px solid var(--accent);">
+                    <strong>Analisis Istana Kehidupan:</strong> Zi Wei (Kaisar) di Istana Kehidupan menunjukkan kepemimpinan alami, otoritas, dan perlindungan bangsawan. Lahir untuk memimpin dengan karisma dan visi strategis. Istana Karier Tan Lang (Hasrat) membawa ambisi kreatif dan energi dinamis. Istana Kekayaan Tian Tong (Keberuntungan) menunjukkan keberuntungan alami dan kemudahan dalam memperoleh kekayaan.
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h3>Kelebihan & Tantangan</h3>
+            </div>
+            <div class="section-content">
+                <div class="grid-2">
+                    <div>
+                        <h4 style="margin-bottom: 20px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Kelebihan Utama</h4>
+                        <ul class="item-list">
+                            <li>
+                                <span class="marker">+</span>
+                                <div class="content">
+                                    <strong>Kepemimpinan Alami</strong>
+                                    <span>Zi Wei Kaisar + Angka Takdir 11 + Hasrat Jiwa 1 menciptakan pemimpin lahir dengan visi spiritual dan ambisi</span>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="marker">+</span>
+                                <div class="content">
+                                    <strong>Presisi & Detail-Oriented</strong>
+                                    <span>Day Master Logam Xin memastikan perhatian meticulosa terhadap detail dan analisis logis</span>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="marker">+</span>
+                                <div class="content">
+                                    <strong>Eksekusi Cepat</strong>
+                                    <span>Manifesting Generator menyediakan energi tinggi sustainable dan implementasi cepat</span>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="marker">+</span>
+                                <div class="content">
+                                    <strong>Komunikasi Strategis</strong>
+                                    <span>Bintang Tian Ji Penasihat memungkinkan kemampuan komunikasi persuasif dan strategis</span>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="marker">+</span>
+                                <div class="content">
+                                    <strong>Intuisi Splenic</strong>
+                                    <span>Mengetahui secara instan dengan insting survival untuk keputusan cepat dan akurat</span>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="marker">+</span>
+                                <div class="content">
+                                    <strong>Sifat Mengasuh</strong>
+                                    <span>Jalan Hidup 6 menciptakan pengasuh alami dan pembangun komunitas</span>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="marker">+</span>
+                                <div class="content">
+                                    <strong>Keberuntungan Alami</strong>
+                                    <span>Tian Tong di Istana Kekayaan membawa keberuntungan dan kemudahan dalam masalah finansial</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="margin-bottom: 20px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Tantangan Utama</h4>
+                        <ul class="item-list">
+                            <li>
+                                <span class="marker" style="color: #999;">-</span>
+                                <div class="content">
+                                    <strong>Kekakuan</strong>
+                                    <span>Dominasi Logam yang kuat (50%) menciptakan kekakuan dan kesulitan beradaptasi dengan perubahan</span>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="marker" style="color: #999;">-</span>
+                                <div class="content">
+                                    <strong>Perfectionisme</strong>
+                                    <span>Xin Logam + Jalan Hidup 6 + Profil 6 menciptakan standar tidak realistis dan kritik diri</span>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="marker" style="color: #999;">-</span>
+                                <div class="content">
+                                    <strong>Kekurangan Elemen Tanah</strong>
+                                    <span>Elemen Tanah nol menciptakan kurangnya grounding, kesulitan menyelesaikan proyek, fondasi tidak stabil</span>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="marker" style="color: #999;">-</span>
+                                <div class="content">
+                                    <strong>Kecenderungan Mengorbankan Diri</strong>
+                                    <span>Jalan Hidup 6 dapat mengarah ke kompleks martir dan mengutamakan orang lain di atas diri sendiri</span>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="marker" style="color: #999;">-</span>
+                                <div class="content">
+                                    <strong>Terlalu Kritis</strong>
+                                    <span>Standar tinggi diterapkan pada diri sendiri dan orang lain menciptakan tekanan pada hubungan</span>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="marker" style="color: #999;">-</span>
+                                <div class="content">
+                                    <strong>Kesulitan Delegasi</strong>
+                                    <span>Zi Wei Kaisar + masalah kontrol Logam menciptakan kecenderungan micromanagement</span>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="marker" style="color: #999;">-</span>
+                                <div class="content">
+                                    <strong>Tidak Sabar</strong>
+                                    <span>Hasrat Jiwa 1 + kecepatan MG menciptakan frustrasi dengan proses atau orang yang lambat</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h3>Rekomendasi Karier</h3>
+            </div>
+            <div class="section-content">
+                <h4 style="margin-bottom: 20px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Jalur Karier Optimal</h4>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Karier</th>
+                            <th>Skor Kecocokan</th>
+                            <th>Kesesuaian Utama</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Wirausaha Teknologi / Founder Startup</td>
+                            <td>95%</td>
+                            <td>Kepemimpinan Zi Wei + eksekusi MG + keberuntungan Tian Tong</td>
+                        </tr>
+                        <tr>
+                            <td>Konsultan Manajemen</td>
+                            <td>90%</td>
+                            <td>Strategi Tian Ji + Profil 6/3 mengajar + keputusan Splenic</td>
+                        </tr>
+                        <tr>
+                            <td>Trader / Investor Keuangan</td>
+                            <td>85%</td>
+                            <td>Intuisi Splenic + analisis Logam + keberuntungan Tian Tong</td>
+                        </tr>
+                        <tr>
+                            <td>Pelatih Eksekutif</td>
+                            <td>85%</td>
+                            <td>Inspirasi Angka Takdir 11 + Role Model Profil 6 + mengasuh Jalan Hidup 6</td>
+                        </tr>
+                        <tr>
+                            <td>Konsultan Manajemen Krisis</td>
+                            <td>80%</td>
+                            <td>Splenic performa di bawah tekanan + logika Logam + kecepatan MG</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 style="margin: 30px 0 15px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Preferensi Lingkungan Kerja</h4>
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>Tipe Pekerjaan</h4>
+                        <div class="value" style="font-size: 18px;">Wirausaha</div>
+                        <div class="description">Otonomi penuh dibutuhkan. Tidak dapat berkembang sebagai karyawan dengan bos.</div>
+                    </div>
+                    <div class="card">
+                        <h4>Lingkungan Kerja</h4>
+                        <div class="value" style="font-size: 18px;">Remote + Perjalanan</div>
+                        <div class="description">Aktivasi Istana Perjalanan membutuhkan pergerakan. Kantor statis menciptakan kecemasan.</div>
+                    </div>
+                    <div class="card">
+                        <h4>Ukuran Tim</h4>
+                        <div class="value" style="font-size: 18px;">5-10 Orang</div>
+                        <div class="description">Tim elit kecil dapat dikelola oleh Jalan Hidup 6. Org besar menciptakan frustrasi birokrasi.</div>
+                    </div>
+                    <div class="card">
+                        <h4>Geografi</h4>
+                        <div class="value" style="font-size: 18px;">Global</div>
+                        <div class="description">Basis Jakarta, pasar global. Istana Perjalanan membutuhkan eksposur internasional.</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px; padding: 20px; background: #f9f9f9; border-left: 3px solid var(--accent);">
+                    <strong>Timeline Transisi Karier:</strong><br>
+                    <strong>2025:</strong> Luncurkan konsultasi solo atau bisnis sampingan<br>
+                    <strong>2026:</strong> Scale ke 3-5 klien, rekrut anggota tim pertama<br>
+                    <strong>2027:</strong> Istri bergabung penuh sebagai COO<br>
+                    <strong>2028-2029:</strong> Perluas ke tim 10 orang, kantor regional<br>
+                    <strong>2030:</strong> Exit atau pivot ke investasi (aktivasi Istana Anak)
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h3>Kompatibilitas Pernikahan</h3>
+            </div>
+            <div class="section-content" style="padding: 0;">
+                <div class="compatibility-header">
+                    <div class="compatibility-score">95</div>
+                    <div class="compatibility-label">Skor Kompatibilitas</div>
+                    <p style="margin-top: 15px; color: var(--text-light);">
+                        Zainal Anwar Nugroho & Kheptin Mentary Farizha<br>
+                        27 September 1995 & 27 September 1997
+                    </p>
+                </div>
+                <div class="section-content">
+                    <div class="grid-2">
+                        <div class="card">
+                            <h4>Zainal (Suami)</h4>
+                            <p style="font-size: 14px; margin-bottom: 12px;">
+                                <strong>Tipe:</strong> Manifesting Generator<br>
+                                <strong>Profil:</strong> 6/3 Role Model<br>
+                                <strong>Jalan Hidup:</strong> 6<br>
+                                <strong>Angka Takdir:</strong> 11
+                            </p>
+                            <p style="font-size: 13px; color: var(--text-light);">
+                                Membawa energi, eksekusi, visi, dan kepemimpinan. Dinamika Logam menghasilkan Air memberi makan hubungan.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h4>Kheptin (Istri)</h4>
+                            <p style="font-size: 14px; margin-bottom: 12px;">
+                                <strong>Tipe:</strong> Projector<br>
+                                <strong>Profil:</strong> 1/3 Investigator<br>
+                                <strong>Jalan Hidup:</strong> 8<br>
+                                <strong>Angka Takdir:</strong> 5
+                            </p>
+                            <p style="font-size: 13px; color: var(--text-light);">
+                                Membawa panduan, sistem, operasi, dan kecakapan finansial. Pengakuan dan undangan adalah bahasa cintanya.
+                            </p>
+                        </div>
+                    </div>
+
+                    <h4 style="margin: 30px 0 15px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Sinergi Kunci</h4>
+                    <ul class="item-list">
+                        <li>
+                            <span class="marker">1</span>
+                            <div class="content">
+                                <strong>Tanggal Lahir Bersama</strong>
+                                <span>27 September alignment menciptakan pemahaman alami dan siklus return solar yang bersamaan</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="marker">2</span>
+                            <div class="content">
+                                <strong>Chart Zi Wei Identik</strong>
+                                <span>Istana Kehidupan sama (Zi Wei), Istana Kekayaan (Tian Tong), Istana Karier (Tan Lang) menciptakan tujuan hidup paralel</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="marker">3</span>
+                            <div class="content">
+                                <strong>Arkana Matahari Bersama</strong>
+                                <span>Keduanya menunjukkan Matahari di Matriks Takdir - energi positivitas, vitalitas, dan kesuksesan ganda</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="marker">4</span>
+                            <div class="content">
+                                <strong>Manifesting Generator + Projector</strong>
+                                <span>Kombinasi HD ideal - kamu menyediakan energi dan eksekusi, dia menyediakan panduan dan sistem</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="marker">5</span>
+                            <div class="content">
+                                <strong>Kesesuaian Otoritas Splenic</strong>
+                                <span>Keduanya membuat keputusan dari intuisi spontan - cepat, selaras tanpa konflik</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="marker">6</span>
+                            <div class="content">
+                                <strong>Logam Menghasilkan Air</strong>
+                                <span>Dinamika BaZi - Logam kamu secara alami memberi makan Air elemennya, menciptakan aliran dukungan alami</span>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div style="margin-top: 30px; padding: 20px; background: #f9f9f9;">
+                        <strong>Potensi Kemitraan Bisnis:</strong> Sangat direkomendasikan. Pembagian ideal: Zainal menangani visi, strategi, penjualan, dan relasi eksternal (peran CEO). Kheptin menangani operasi, keuangan, sistem, dan manajemen internal (peran COO). Bersama menciptakan tim pelengkap yang kuat.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h3>Timeline 2025 & Transisi</h3>
+            </div>
+            <div class="section-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">Januari - Juli 2025</div>
+                        <div class="timeline-title">Istana Saudara (Fase Penyelesaian)</div>
+                        <div class="timeline-desc">Energi Tian Ji (Penasihat). Perencanaan strategis, penyempurnaan komunikasi, networking. Persiapan untuk transisi hidup besar.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">9 Agustus 2025</div>
+                        <div class="timeline-title">Pernikahan</div>
+                        <div class="timeline-desc">Bentrokan tahun Yi-Si menciptakan transformasi. Waktu tepat di tepi transisi profil. Tai Yang di Istana Pasangan diaktivkan.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">27 September 2025</div>
+                        <div class="timeline-title">Ulang Tahun ke-30 - Transisi Besar</div>
+                        <div class="timeline-desc">Profil 6/3 Fase 1 (0-30) berakhir, Fase 2 (30-50) dimulai. Pergeseran dari "pelaku" ke "role model." Aktivasi Istana Perjalanan dimulai.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Oktober - Desember 2025</div>
+                        <div class="timeline-title">Istana Perjalanan (Fase Awal)</div>
+                        <div class="timeline-desc">Energi Tian Fu (Permaisuri). Pergerakan, ekspansi, kemakmuran melalui perjalanan. Membangun basis rumah baru sebagai pasangan menikah.</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 40px; padding: 24px; background: #f9f9f9; text-align: center;">
+                    <h4 style="margin-bottom: 12px;">Energi Universal 2025</h4>
+                    <p style="color: var(--text-light);">
+                        <strong>Tahun Universal:</strong> 9 (Penyelesaian & Akhir Siklus)<br>
+                        <strong>Tahun Pribadi:</strong> 6 (Harmoni & Tanggung Jawab - menggema Jalan Hidup)<br>
+                        <strong>Tahun Yi Si:</strong> Ular Kayu - Transformasi dan pertumbuhan<br>
+                        <strong>Tema:</strong> Penyelesaian siklus lama, persiapan untuk kerajaan baru
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h3>Kesimpulan</h3>
+            </div>
+            <div class="section-content">
+                <p style="font-size: 16px; line-height: 1.8; margin-bottom: 24px;">
+                    Zainal Anwar Nugroho adalah <strong>pemimpin lahir</strong> dengan kombinasi langka dari <strong>wawasan spiritual visioner</strong> (Angka Takdir 11) dan <strong>kekuatan eksekusi praktis</strong> (Manifesting Generator). Chart menunjukkan seorang <strong>Kaisar</strong> (Zi Wei) dengan <strong>Permaisuri</strong> (Tian Fu Istana Perjalanan) takdir - ditakdirkan untuk membangun dan memerintah kerajaan, bukan melayani di kerajaan orang lain.
+                </p>
+
+                <p style="font-size: 16px; line-height: 1.8; margin-bottom: 24px;">
+                    <strong>Elemen Logam yang kuat</strong> (50% dari chart) menciptakan presisi, logika, dan disiplin - sempurna untuk teknologi, keuangan, atau bisnis sistematis. Namun, <strong>elemen Tanah nol</strong> membutuhkan upaya sadar untuk membuat sistem grounding dan menyelesaikan apa yang dimulai.
+                </p>
+
+                <p style="font-size: 16px; line-height: 1.8; margin-bottom: 24px;">
+                    <strong>Pernikahan dengan Kheptin</strong> pada 9 Agustus 2025 mewakili <strong>persatuan soulmate</strong> dengan kompatibilitas 95%. Sebagai kembaran ulang tahun dengan chart yang hampir identik, mereka berbagi takdir paralel dan pemahaman alami. Kemitraan menggabungkan <strong>energi dan visinya</strong> dengan <strong>sistem dan panduannya</strong>.
+                </p>
+
+                <p style="font-size: 16px; line-height: 1.8;">
+                    <strong>Rekomendasi karier:</strong> Jalur wirausahawan teknologi atau pendiri, dimulai dengan konsultasi untuk membangun keahlian, kemudian transisi ke bisnis yang dapat diskalakan dengan istri sebagai COO. Timeline selaras dengan aktivasi Istana Perjalanan (2026-2035) dan Fase 2 Profil 6/3 (tahun mengajar/role model). Kesuksesan membutuhkan penerimaan intuisi Splenic, mengompensasi kekurangan Tanah dengan sistem eksternal, dan mendelegasikan kontrol untuk memungkinkan kerajaan tumbuh melampaui kapasitas individu.
+                </p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Laporan Analisis Karakter Pribadi</p>
+            <p style="margin-top: 8px;">Dibuat Februari 2026</p>
+        </div>
+    </div>
+</body>
+</html>
